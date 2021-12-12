@@ -19,8 +19,8 @@ for i in xxx["SN"]:
         
 ####### FUNKCJA WCZYTANIA DANYCH ###############################################################################
 
-def wczytanie_danych(nazwa_pliku, kanal=0):
-    data = pd.read_csv("https://raw.githubusercontent.com/RusieckiFilip/PracaInz/main/TESTY_H2-pow_fi1_091121/H2-pow_fi1/"+nazwa_pliku, sep = ";")
+def wczytanie_danych(nazwa_pliku, nazwa_folderu, kanal=0):
+    data = pd.read_csv("https://raw.githubusercontent.com/RusieckiFilip/PracaInz/main/"+nazwa_folderu+"/H2-pow_fi1/"+nazwa_pliku, sep = ";")
     
     #### USUWANIE SZUMU ######
     if kanal != 0:
@@ -42,32 +42,34 @@ def wczytanie_danych(nazwa_pliku, kanal=0):
 
 ############# WCZYTANIE DANYCH ##########################################################################################################################
 
-data1 = wczytanie_danych("test1.csv","ch 3")
-text1 = wczytanie_danych("test1_t.csv")
+data1 = wczytanie_danych("test1.csv","TESTY_H2-pow_fi1_091121","ch 3")
+text1 = wczytanie_danych("test1_t.csv","TESTY_H2-pow_fi1_091121")
 
 
-data2 = wczytanie_danych("test2.csv","ch 3")
-text2 = wczytanie_danych("test2_t.csv")
+data2 = wczytanie_danych("test2.csv","TESTY_H2-pow_fi1_091121","ch 3")
+text2 = wczytanie_danych("test2_t.csv","TESTY_H2-pow_fi1_091121")
 
-data3 = wczytanie_danych("test3.csv","ch 3")
-text3 = wczytanie_danych("test3_t.csv")
+data3 = wczytanie_danych("test3.csv","TESTY_H2-pow_fi1_091121","ch 3")
+text3 = wczytanie_danych("test3_t.csv","TESTY_H2-pow_fi1_091121")
 
-data4 = wczytanie_danych("test4.csv","ch 3")
-text4 = wczytanie_danych("test4_t.csv")
+data4 = wczytanie_danych("test4.csv","TESTY_H2-pow_fi1_091121","ch 3")
+text4 = wczytanie_danych("test4_t.csv","TESTY_H2-pow_fi1_091121")
 
-data5 = wczytanie_danych("test5.csv","ch 3")
-text5 = wczytanie_danych("test5_t.csv")
+data5 = wczytanie_danych("test5.csv","TESTY_H2-pow_fi1_091121","ch 3")
+text5 = wczytanie_danych("test5_t.csv","TESTY_H2-pow_fi1_091121")
 
-data6 = wczytanie_danych("test6.csv","ch 3")
-text6 = wczytanie_danych("test6_t.csv")
+data6 = wczytanie_danych("test6.csv","TESTY_H2-pow_fi1_091121","ch 3")
+text6 = wczytanie_danych("test6_t.csv","TESTY_H2-pow_fi1_091121")
 
 
 ############ FUNKCJA TWORZACA WYKRESY ######################################################
 
-####### Funkcja(dane z czujnikow, opis, numer exp, trigger dla SN, trigger dla SN powrotna fala, trigger dla SJ, trig dla 2 pierwszych SN) 
+####### Funkcja(dane z czujnikow, opis, numer exp, trigger dla SN, trigger dla SN powrotna fala, trigger dla SJ, trig dla 2 pierwszych SN, czas po ktorym mierzymy trigger powrotnej fali) 
 
-def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2):
+def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior):
     
+    ######## TWORZENIE KOPII #########
+    data = data1[:]
 
     ######## Obliczanie TOA_P dla kanałow bez sond jonizacyjnych ##########################
     
@@ -135,8 +137,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2):
         l+=1
     #####################################################
     
-    ######## TWORZENIE KOPII #########
-    data = data1
+
     
     ########################## WYKRES ODCZYTÓW CZUJNIKÓW #################################
         
@@ -152,7 +153,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2):
     plt.ylabel("P [MPa]")
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     #plt.ylim(0,2.5)
-    #plt.xlim(14000,23000)
+    plt.xlim(0,12000)
     #color = cm.rainbow(np.linspace(0, 1, 8))
     for i in range(1,9):
         plt.plot(data1["time [us]"],data1["ch "+ str(i)], linewidth=1, label =  "ch"+ str(i) + " SN")
@@ -164,7 +165,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2):
     plt.ylabel("P [V]")
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     #plt.ylim(0,2.5)
-    #plt.xlim(14000,23000)
+    plt.xlim(0,20000)
     for i in range(1,15):
         if i > 8:
             plt.plot(data1["time [us]"],data1["ch "+ str(i)], linewidth=1, label =  "ch"+ str(i) + " SJ" )
@@ -194,7 +195,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2):
     for i, c in zip(range(1,9),color):
         plt.plot(data1["time [us]"],data1["ch "+ str(i)] + df1["Odleglosc"][i-1], 
                  linewidth=0.4, label = "ch"+ str(i) + " SN, " + str(df1["Odleglosc"][i-1])+" m", c=c)
-    plt.legend(loc="lower right")
+    plt.legend(loc="upper left")
     
     
     
@@ -326,49 +327,73 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2):
     
     
     
-    ########## NIEDOKONCZONE  ##############################
+
     
     ###### CIAG DALSZY WYKRESU ZBIORCZEGO #####
     
     df_temp = df1
     
-    df_temp.drop(index=2)
+    df_temp=df_temp.drop(df_temp.index[2])
     
-    #print("DF TEMP ", df_temp['Odleglosc'])
+    
+    print("DF TEMP ", df_temp['Odleglosc'])
     
     ##### Linia pochyla reprezentujaca predkosc pierwszej fali #####
     zbiorczy.plot(df_temp["TOA_P [ms]"]*1000, df_temp["Odleglosc"]+0.08,
                   linewidth=2, color='k')
     
+    
+    ########## NIEDOKONCZONE  ##############################
+    
+     
+    ###### USUWANIE kanału zanieczyszczonego i urwanego #################################
+    
+    data.drop('ch 3',
+      axis='columns', inplace=True)
+    
     ################### USTALENIE KIEDY DOTARLA FALA DO CZUJNIKOW  ###################
     l=-1
     list_zbior = []
-    list_czas = [df_temp["TOA_P [ms]"][7]*1000,]
+    list_czas = []
     
     ##### CZAS DOTARCIA POWROTNEJ FALI #######
-    for i in data:
-        if  i != "time [us]" and l < 7:
-            k=-1
+    for i, o in zip(data,df_temp["Odleglosc"]):
+        if  i != "time [us]" and l < 6:
+            k=czas_zbior
+            print("Kanal ",i)
             for j in data[i]:
                 k+=1
                 if data[i][k] > tr_SN_f2:
                     list_czas.append(data["time [us]"][k])
+                    if data[i][k]> 1.2: list_zbior.append(o+0.3)  #Gdy za duza wartosc
+                    else: list_zbior.append(data[i][k-2500]+o-0.3)
                     break
         l+=1
-        
+     
+    list_czas.append(df1["TOA_P [ms]"][7]*1000)
+    list_zbior.append(df_temp["Odleglosc"][7]+0.08)
+    list_czas = list_czas[:7]
+    
+    list_czas = list_czas[::-1]
+
+    """
     ####### Wartosci cisnien ToA powrotnej fali #######
     j=0
-    for i in reversed(df_temp["Odleglosc"]):
-        if j < 7: list_zbior.append(i+0.08+tr_SN_f2)
+    for i in df_temp["Odleglosc"]:
+        if j < 7: list_zbior.append(i+tr_SN_f2)
         j+=1
-        
-    #print("List zbior",  list_zbior)
-    #print("List czas",  list_czas)
+    
+    """
+    list_zbior = list_zbior[::-1]
+   
+    
+    print("List zbior",  list_zbior)
+    print("List czas",  list_czas)
    
     ###### Linia pochyla reprezentujaca fale powrotna ########
     
-    # zbiorczy.plot(list_czas, list_zbior,
-    #               linewidth=2, color='k')
+    zbiorczy.plot(list_czas, list_zbior,
+                  linewidth=2, color='k')
 
     
     return df1
@@ -382,73 +407,16 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2):
 
 ###### WYSWIETLENIE WYKRESOW #############################################################################
 
-df1=funkcja(data1,text1,"1",0.25,0.75,0.08,0.15)
-df2=funkcja(data2,text2,"2",0.25,0.75,0.225,0.25)
+df1=funkcja(data1,text1,"1",0.25,0.9,0.08,0.15,6200)
+df2=funkcja(data2,text2,"2",0.25,1.1,0.225,0.25,6200)
 #funkcja(data3,text3,"3",0.15,0.6) ##### jedna sonda nie dziala (sonda 4)
-df4=funkcja(data4,text4,"4",0.25,0.75,0.11,0.15)
-df5=funkcja(data5,text5,"5",0.25,0.75,0.12,0.15)
-df6=funkcja(data6,text6,"6",0.25,0.75,0.049,0.231) 
+df4=funkcja(data4,text4,"4",0.25,0.31,0.11,0.15,7500)
+df5=funkcja(data5,text5,"5",0.25,0.28,0.12,0.15,7500)
+df6=funkcja(data6,text6,"6",0.25,0.35,0.049,0.231,7500) 
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ##### Zbiorcze wykresy predkosci i ToA
-
-# def wykres_zbiorczy(sred_odleg,V_p,V_v,numer):
-  
-#     plt.plot([0,sred_odleg[1]],[0,V_p[1]], linestyle='--')
-#     plt.plot([0,sred_odleg[2]],[0,V_v[2]], linestyle='--')
-    
-#     plt.plot(sred_odleg[1:],V_p[1:], label="Fala cisnieniowa exp."+str(numer))
-#     plt.plot(sred_odleg[2:],V_v[2:], label="Front plomienia exp."+str(numer))
-
-   
-# fig3 = plt.figure("V")
-
-# fig3.suptitle('dx/dt' , fontsize=14)
-    
-# plt.style.use('seaborn-deep')
-# plt.xlabel("Dystans [m]")
-# plt.ylabel("Predkosc [m/s]")
-# plt.grid(color='#717171', linestyle='--', linewidth=0.3)
-  
-# wykres_zbiorczy(df1["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],1)
-# wykres_zbiorczy(df2["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],2)
-# #wykres_zbiorczy(df3["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"])
-# wykres_zbiorczy(df4["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],4)
-# wykres_zbiorczy(df5["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],5)
-# wykres_zbiorczy(df6["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],6)
-        
-# plt.plot([0,3.5], [1979.24,1979.24], linestyle='-.', color = "r", linewidth=1.3, alpha=0.6)
-# plt.xlim(0,3)
-# plt.text(0.1, 2000, r'$V_{CJ}=1979.24\ [m/s]$', fontsize=10)
-    
-    
-# plt.legend()
-# fig3.tight_layout()
 
