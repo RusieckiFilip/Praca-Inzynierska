@@ -61,6 +61,11 @@ text5 = wczytanie_danych("test5_t.csv","TESTY_H2-pow_fi1_091121")
 data6 = wczytanie_danych("test6.csv","TESTY_H2-pow_fi1_091121","ch 3")
 text6 = wczytanie_danych("test6_t.csv","TESTY_H2-pow_fi1_091121")
 
+data7 = wczytanie_danych("Exp_07.csv","testy_H2-pow_fi1_061221","ch 3")
+text7 = wczytanie_danych("Exp_07_t.csv","testy_H2-pow_fi1_061221")
+
+data8 = wczytanie_danych("Exp_08.csv","testy_H2-pow_fi1_061221","ch 3")
+text8 = wczytanie_danych("Exp_08_t.csv","testy_H2-pow_fi1_061221")
 
 ############ FUNKCJA TWORZACA WYKRESY ######################################################
 
@@ -94,6 +99,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior):
         l=0
         for j in xxx["SN"]:
             if j in i:
+                print("Czujnik: ", j)
                 list1.append(xxx["VMPA"][l])
             l+=1
    
@@ -165,7 +171,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior):
     plt.ylabel("P [V]")
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     #plt.ylim(0,2.5)
-    plt.xlim(0,20000)
+    plt.xlim(0,12000)
     for i in range(1,15):
         if i > 8:
             plt.plot(data1["time [us]"],data1["ch "+ str(i)], linewidth=1, label =  "ch"+ str(i) + " SJ" )
@@ -413,10 +419,70 @@ df2=funkcja(data2,text2,"2",0.25,1.1,0.225,0.25,6200)
 df4=funkcja(data4,text4,"4",0.25,0.31,0.11,0.15,7500)
 df5=funkcja(data5,text5,"5",0.25,0.28,0.12,0.15,7500)
 df6=funkcja(data6,text6,"6",0.25,0.35,0.049,0.231,7500) 
+df7=funkcja(data7,text7,"7",0.35,0.4,0.08,0.231,6500) 
+df8=funkcja(data8,text8,"8",0.35,0.4,0.08,0.231,6500) 
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ##### Zbiorcze wykresy predkosci i ToA
+
+# def wykres_zbiorczy(sred_odleg,V_p,V_v,numer):
+  
+#     plt.plot([0,sred_odleg[1]],[0,V_p[1]], linestyle='--')
+#     plt.plot([0,sred_odleg[2]],[0,V_v[2]], linestyle='--')
+    
+#     plt.plot(sred_odleg[1:],V_p[1:], label="Fala cisnieniowa exp."+str(numer))
+#     plt.plot(sred_odleg[2:],V_v[2:], label="Front plomienia exp."+str(numer))
+
+   
+# fig3 = plt.figure("V")
+
+# fig3.suptitle('dx/dt' , fontsize=14)
+    
+# plt.style.use('seaborn-deep')
+# plt.xlabel("Dystans [m]")
+# plt.ylabel("Predkosc [m/s]")
+# plt.grid(color='#717171', linestyle='--', linewidth=0.3)
+  
+# wykres_zbiorczy(df1["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],1)
+# wykres_zbiorczy(df2["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],2)
+# #wykres_zbiorczy(df3["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"])
+# wykres_zbiorczy(df4["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],4)
+# wykres_zbiorczy(df5["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],5)
+# wykres_zbiorczy(df6["Srednia odleglosc"],df1["Predkosc P"],df1["Predkosc V"],6)
+        
+# plt.plot([0,3.5], [1979.24,1979.24], linestyle='-.', color = "r", linewidth=1.3, alpha=0.6)
+# plt.xlim(0,3)
+# plt.text(0.1, 2000, r'$V_{CJ}=1979.24\ [m/s]$', fontsize=10)
+    
+    
+# plt.legend()
+# fig3.tight_layout()
 
