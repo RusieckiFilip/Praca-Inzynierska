@@ -44,20 +44,38 @@ def wczytanie_danych(nazwa_pliku, nazwa_folderu, kanal=0):
 ############# WCZYTANIE DANYCH ##########################################################################################################################
 
 
-data1 = wczytanie_danych("Exp_01.csv","testy_H2-pow_fi1_new_setup")
-text1 = wczytanie_danych("Exp_01_t.csv","testy_H2-pow_fi1_new_setup")
+# data1 = wczytanie_danych("Exp_01.csv","testy_H2-pow_fi1_new_setup")
+# text1 = wczytanie_danych("Exp_01_t.csv","testy_H2-pow_fi1_new_setup")
 
-data2 = wczytanie_danych("Exp_02.csv","testy_H2-pow_fi1_new_setup")
-text2 = wczytanie_danych("Exp_02_t.csv","testy_H2-pow_fi1_new_setup")
+# data2 = wczytanie_danych("Exp_02.csv","testy_H2-pow_fi1_new_setup")
+# text2 = wczytanie_danych("Exp_02_t.csv","testy_H2-pow_fi1_new_setup")
 
-data3 = wczytanie_danych("Exp_03.csv","testy_H2-pow_fi1_new_setup")
-text3 = wczytanie_danych("Exp_03_t.csv","testy_H2-pow_fi1_new_setup")
+# data3 = wczytanie_danych("Exp_03.csv","testy_H2-pow_fi1_new_setup")
+# text3 = wczytanie_danych("Exp_03_t.csv","testy_H2-pow_fi1_new_setup")
 
-data4 = wczytanie_danych("Exp_04.csv","testy_H2-pow_fi1_new_setup")
-text4 = wczytanie_danych("Exp_04_t.csv","testy_H2-pow_fi1_new_setup")
+# data4 = wczytanie_danych("Exp_04.csv","testy_H2-pow_fi1_new_setup")
+# text4 = wczytanie_danych("Exp_04_t.csv","testy_H2-pow_fi1_new_setup")
 
-data5 = wczytanie_danych("Exp_05.csv","testy_H2-pow_fi1_new_setup")
-text5 = wczytanie_danych("Exp_05_t.csv","testy_H2-pow_fi1_new_setup")
+# data5 = wczytanie_danych("Exp_05.csv","testy_H2-pow_fi1_new_setup")
+# text5 = wczytanie_danych("Exp_05_t.csv","testy_H2-pow_fi1_new_setup")
+
+data6 = wczytanie_danych("Exp_01.csv","testy_H2-pow_fi16_new_setup_16152021")
+text6 = wczytanie_danych("Exp_01_t.csv","testy_H2-pow_fi16_new_setup_16152021")
+
+data7 = wczytanie_danych("Exp_02.csv","testy_H2-pow_fi16_new_setup_16152021")
+text7 = wczytanie_danych("Exp_02_t.csv","testy_H2-pow_fi16_new_setup_16152021")
+
+data8 = wczytanie_danych("Exp_03.csv","testy_H2-pow_fi16_new_setup_16152021")
+text8 = wczytanie_danych("Exp_03_t.csv","testy_H2-pow_fi16_new_setup_16152021")
+
+data9 = wczytanie_danych("Exp_04.csv","testy_H2-pow_fi16_new_setup_16152021")
+text9 = wczytanie_danych("Exp_04_t.csv","testy_H2-pow_fi16_new_setup_16152021")
+
+data10 = wczytanie_danych("Exp_05.csv","testy_H2-pow_fi16_new_setup_16152021")
+text10 = wczytanie_danych("Exp_05_t.csv","testy_H2-pow_fi16_new_setup_16152021")
+
+data11 = wczytanie_danych("Exp_06.csv","testy_H2-pow_fi16_new_setup_16152021")
+text11 = wczytanie_danych("Exp_06_t.csv","testy_H2-pow_fi16_new_setup_16152021")
 
 
 ############ FUNKCJA TWORZACA WYKRESY ######################################################
@@ -126,34 +144,36 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     ########################## WYKRES ODCZYTÓW CZUJNIKÓW #################################
         
         
-    fig1 = plt.figure("data" + numer)
+    fig1 = plt.figure("data" + numer,figsize=(16, 9), dpi=150)
     plt.clf()
     
-    fig1.suptitle(opis, fontsize=14)
+    fig1.suptitle(opis, fontsize=20)
     
     ax1=plt.subplot(211)
     plt.style.use('seaborn-deep')
-    plt.xlabel("Czas [us]")
-    plt.ylabel("P [MPa]")
+    plt.xlabel("Czas [us]", fontsize=15)
+    plt.ylabel("P [MPa]", fontsize=15)
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     #plt.ylim(0,2.5)
     plt.xlim(0,12000)
     #color = cm.rainbow(np.linspace(0, 1, 8))
     for i in range(1,6):
-        plt.plot(data1["time [us]"],data1["ch "+ str(i)], linewidth=1, label =  "ch"+ str(i) + " SN")
-    plt.legend(loc="lower right")
+        plt.plot(data1["time [us]"],data1["ch "+ str(i)], linewidth=1.5, label =  "ch"+ str(i) + " SN")
+    plt.legend(loc="upper left")
+    plt.tick_params(axis='both', labelsize=14)
         
     ax1=plt.subplot(212)
     plt.style.use('seaborn-deep')
-    plt.xlabel("Czas [us]")
-    plt.ylabel("P [V]")
+    plt.xlabel("Czas [us]", fontsize=15)
+    plt.ylabel("U [V]", fontsize=15)
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     #plt.ylim(0,2.5)
     plt.xlim(0,12000)
     for i in range(1,11):
         if i > 5:
-            plt.plot(data1["time [us]"],data1["ch "+ str(i)], linewidth=1, label =  "ch"+ str(i) + " SJ" )
-    plt.legend(loc="lower right")
+            plt.plot(data1["time [us]"],data1["ch "+ str(i)], linewidth=1.5, label =  "ch"+ str(i) + " SJ" )
+    plt.legend(loc="upper left")
+    plt.tick_params(axis='both', labelsize=14)
     
     fig1.tight_layout()
     
@@ -164,20 +184,21 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     fig4 = plt.figure("Zbiorczy" + numer)
     plt.clf()
     
-    fig4.suptitle(opis, fontsize=14)
+    fig4.suptitle(opis, fontsize=23)
     zbiorczy = plt.subplot(111)
     
     plt.style.use('seaborn-deep')
-    plt.xlabel("Czas [us]")
-    plt.ylabel("P[MPa] + x[m]")
+    plt.xlabel("Czas [us]", fontsize=17)
+    plt.ylabel("P[MPa] + x[m]", fontsize=17)
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     #plt.ylim(0,2.5)
     plt.xlim(0,15000)
     color = cm.rainbow(np.linspace(0, 1, 5))
     for i, c in zip(range(1,6),color):
         plt.plot(data1["time [us]"],data1["ch "+ str(i)] + df1["Odleglosc"][i-1], 
-                 linewidth=0.4, label = "ch"+ str(i) + " SN, " + str(df1["Odleglosc"][i-1])+" m", c=c)
-    plt.legend(loc="upper left")
+                 linewidth=1, label = "ch"+ str(i) + " SN, " + str(df1["Odleglosc"][i-1])+" m", c=c)
+    plt.legend(loc="upper left",  fontsize=15)
+    plt.tick_params(axis='both', labelsize=16)
     
     
     
@@ -214,11 +235,11 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     fig2 = plt.figure("TOA" + str(numer))
     plt.clf()
     
-    fig2.suptitle('ToA\n\n' + opis, fontsize=14)
+    fig2.suptitle('ToA\n\n' + opis, fontsize=23)
     
     plt.style.use('seaborn-deep')
-    plt.xlabel("Dystans [m]")
-    plt.ylabel("Czas [ms]")
+    plt.xlabel("Dystans [m]", fontsize=17)
+    plt.ylabel("Czas [ms]", fontsize=17)
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     plt.xlim(0,2)
     
@@ -227,9 +248,10 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     plt.plot([0,df1["Odleglosc"][0]],[0,df1["TOA_V [ms]"][0]], linestyle='--', color="b")
     
     
-    plt.plot(df1["Odleglosc"],df1["TOA_P [ms]"], color="g", label="Fala cisnieniowa")
-    plt.plot(df1["Odleglosc"],df1["TOA_V [ms]"], color="b", label="Front plomienia")
-    plt.legend()
+    plt.plot(df1["Odleglosc"],df1["TOA_P [ms]"], color="g", label="Fala cisnieniowa",marker="o")
+    plt.plot(df1["Odleglosc"],df1["TOA_V [ms]"], color="b", label="Front plomienia",marker="o")
+    plt.legend(loc="upper left",  fontsize=15)
+    plt.tick_params(axis='both', labelsize=16)
     fig2.tight_layout()
     
     
@@ -304,7 +326,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
             else: ########### USUWAM UJEMNE WARTOSCI ALE CZY POPRAWNIE  ???????   ###########
                 list6[j]=abs(list6[j])
                 list7[j]=abs(list7[j])
-                
+              
                 ################
         j=-1
         for p,v in zip(list6,list7):
@@ -328,33 +350,39 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
            
             #################
         
-            else: ########### USUWAM UJEMNE WARTOSCI ALE CZY POPRAWNIE  ???????   ###########
-                list6[j]=abs(list6[j])
-                list7[j]=abs(list7[j])
+            ########### USUWAM UJEMNE WARTOSCI ALE CZY POPRAWNIE  ???????   ###########
+            list6[j]=abs(list6[j])
+            list7[j]=abs(list7[j])
                 
                 ################
+    
+    list7 =  [abs(i) for i in list7]
+    
     
     fig3 = plt.figure("V" + numer)
     plt.clf()
     
-    fig3.suptitle('dx/dt\n\n' + opis, fontsize=14)
+    fig3.suptitle('dx/dt\n\n' + opis, fontsize=23)
     
     plt.style.use('seaborn-deep')
-    plt.xlabel("Dystans [m]")
-    plt.ylabel("Predkosc [m/s]")
+    plt.xlabel("Dystans [m]", fontsize=17)
+    plt.ylabel("Predkosc [m/s]", fontsize=17)
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     
     plt.plot([0,list5[1]],[0,list6[1]], linestyle='--', color="g")
     plt.plot([0,list5[1]],[0,list7[1]], linestyle='--', color="b")
     
-    plt.plot(list5[1:],list6[1:], label="Fala cisnieniowa", color="g")
-    plt.plot(list5[1:],list7[1:], label="Front plomienia",  color="b")
+    plt.plot(list5[1:],list6[1:], label="Fala cisnieniowa", color="g",marker="o")
+    plt.plot(list5[1:],list7[1:], label="Front plomienia",  color="b",marker="o")
+    plt.ylim(0,2100)
     
     
-    plt.plot([0,3.5], [1979.24,1979.24], linestyle='-.', color = "r", linewidth=1.3, alpha=0.6)
+    plt.plot([0,3.5], [1979.24,1979.24], linestyle='-.', color = "r", linewidth=1.5, alpha=0.6)
+    plt.plot([0,3.5], [1108.5,1108.5], linestyle='-.', color = "r", linewidth=1.5, alpha=0.6)
     plt.xlim(0,2)
-    plt.text(0.1, 2000, r'$V_{CJ}=1979.24\ [m/s]$', fontsize=10)
-    
+    plt.text(0.1, 2000, r'$V_{CJ}=1979.24\ [m/s]$', fontsize=15)
+    plt.text(0.1, 1140, r'$a_{p}=1108.5\ [m/s]$', fontsize=15)
+    plt.tick_params(axis='both', labelsize=16)
     
     plt.legend()
     fig3.tight_layout()
@@ -428,9 +456,16 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
    
     ###### Linia pochyla reprezentujaca fale powrotna ########
     
-    zbiorczy.plot(list_czas, list_zbior,
+    zbiorczy.plot(list_czas, df_temp["Odleglosc"][::-1]+0.08,
                   linewidth=2, color='k')
-
+    
+    ##### OPOZNIONY ZAPLON ########
+    predkosc_powrotn = (1000000*(df_temp["Odleglosc"][4]-df_temp["Odleglosc"][3]))/(list_czas[1]-list_czas[0])
+     
+    opoz_zapl = (df1['TOA_V [ms]'][4]-df1['TOA_P [ms]'][4])*1000
+    print("\nOPOZNIENIE ZAPLONU:",opoz_zapl,"[us]\n")
+    print("OSTATNIA PREDKOSC:", round(list6[4],1),"[m/s]\n")
+    print("PREDKOSC POWROTNA", round(predkosc_powrotn,1), "[m/s]\n")
     
     return df1
     
@@ -450,11 +485,17 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
 
 ##### CZAS = LICZBA / 2 bo kazda proba byla liczona co 0.5 us
   
-df1=funkcja(data1,text1,"1",0.25,0.35,0.13,0.15,9000,1750,"tak")
-df2=funkcja(data2,text2,"2",0.25,1.1,0.225,0.25,9000,1750)
-df3=funkcja(data3,text3,"3",0.25,1.1,0.225,0.25,8000,1750,"tak")
-df4=funkcja(data4,text4,"4",0.19,0.4,0.158,0.19,10000,1750)
-df5=funkcja(data5,text5,"5",0.25,0.5,0.156,0.15,10000,1750)
+# df1=funkcja(data1,text1,"1",0.25,0.35,0.13,0.15,9000,1750,"tak")
+# df2=funkcja(data2,text2,"2",0.25,1.1,0.225,0.25,9000,1750)
+# df3=funkcja(data3,text3,"3",0.25,1.1,0.225,0.25,8000,1750,"tak")
+# df4=funkcja(data4,text4,"4",0.19,0.4,0.158,0.19,10000,1750)
+# df5=funkcja(data5,text5,"5",0.25,0.5,0.156,0.15,10000,1750)
 
+####### TESTY_H2-pow_fi16_newsetup
 
-
+df6=funkcja(data6,text6,"6",0.25,0.3,0.13,0.15,5000,1750)
+df7=funkcja(data7,text7,"7",0.25,0.33,0.225,0.25,11000,1750,"tak")
+df8=funkcja(data8,text8,"8",0.25,0.4,0.225,0.25,11000,1750,"tak")
+df9=funkcja(data9,text9,"9",0.19,0.4,0.158,0.19,10000,1750,"tak")
+df10=funkcja(data10,text10,"10",0.25,0.4,0.156,0.15,10000,1750,"tak")
+df11=funkcja(data11,text11,"11",0.25,0.35,0.156,0.15,10000,1750)
