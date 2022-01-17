@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jan 11 13:34:00 2022
+
+@author: Filip
+"""
+
 
 
 import matplotlib.pyplot as plt
@@ -26,14 +33,14 @@ for i in xxx["SN"]:
 
 def wczytanie_danych(nazwa_pliku, nazwa_folderu, kanal=0):
     data = pd.read_csv("https://raw.githubusercontent.com/RusieckiFilip/PracaInz/main/"+
-                       nazwa_folderu+"/H2-pow_fi1/"+nazwa_pliku, sep = ";")
+                       nazwa_folderu+"/H2-pow_fi1/"+nazwa_pliku, sep = "\t")
     
     #### USUWANIE SZUMU ######
     if kanal != 0:
         i=0
         for j in data[kanal]:
             if data[kanal][i] > 0.45:
-                data[kanal] = data[kanal].drop(labels=list(range(i,31999)), axis=0)    
+                data[kanal] = data[kanal].drop(labels=list(range(i,15998)), axis=0)    
                 break
             i+=1
         for i in data:
@@ -48,76 +55,23 @@ def wczytanie_danych(nazwa_pliku, nazwa_folderu, kanal=0):
 
 ############# WCZYTANIE DANYCH ##########################################################################################################################
 
-# data1 = wczytanie_danych("test1.csv","TESTY_H2-pow_fi1_091121","ch 3")
-# text1 = wczytanie_danych("test1_t.csv","TESTY_H2-pow_fi1_091121")
 
-# data2 = wczytanie_danych("test2.csv","TESTY_H2-pow_fi1_091121","ch 3")
-# text2 = wczytanie_danych("test2_t.csv","TESTY_H2-pow_fi1_091121")
+data21 = wczytanie_danych("test2.csv","TESTY-H2-pow_fi08_101121","ch 3")
+text21 = wczytanie_danych("test2_t.csv","TESTY-H2-pow_fi08_101121")
 
-# data3 = wczytanie_danych("test3.csv","TESTY_H2-pow_fi1_091121","ch 3")
-# text3 = wczytanie_danych("test3_t.csv","TESTY_H2-pow_fi1_091121")
+data22 = wczytanie_danych("test3.csv","TESTY-H2-pow_fi08_101121","ch 3")
+text22 = wczytanie_danych("test3_t.csv","TESTY-H2-pow_fi08_101121")
 
-# data4 = wczytanie_danych("test4.csv","TESTY_H2-pow_fi1_091121","ch 3")
-# text4 = wczytanie_danych("test4_t.csv","TESTY_H2-pow_fi1_091121")
-
-# data5 = wczytanie_danych("test5.csv","TESTY_H2-pow_fi1_091121","ch 3")
-# text5 = wczytanie_danych("test5_t.csv","TESTY_H2-pow_fi1_091121")
-
-# data6 = wczytanie_danych("test6.csv","TESTY_H2-pow_fi1_091121","ch 3")
-# text6 = wczytanie_danych("test6_t.csv","TESTY_H2-pow_fi1_091121")
-
-# data7 = wczytanie_danych("Exp_07.csv","testy_H2-pow_fi1_061221","ch 3")
-# text7 = wczytanie_danych("Exp_07_t.csv","testy_H2-pow_fi1_061221")
-
-# data8 = wczytanie_danych("Exp_08.csv","testy_H2-pow_fi1_061221","ch 3")
-# text8 = wczytanie_danych("Exp_08_t.csv","testy_H2-pow_fi1_061221")
-
-# data9 = wczytanie_danych("Exp_05.csv","testy_H2-pow_fi08_061221","ch 3")
-# text9 = wczytanie_danych("Exp_05_t.csv","testy_H2-pow_fi08_061221")
-
-# data10 = wczytanie_danych("Exp_06.csv","testy_H2-pow_fi08_061221","ch 3")
-# text10 = wczytanie_danych("Exp_06_t.csv","testy_H2-pow_fi08_061221")
-
-# data11 = wczytanie_danych("Exp_07.csv","testy_H2-pow_fi08_071221","ch 3")
-# text11 = wczytanie_danych("Exp_07_t.csv","testy_H2-pow_fi08_071221")
-
-# data12 = wczytanie_danych("Exp_08.csv","testy_H2-pow_fi08_071221","ch 3")
-# text12 = wczytanie_danych("Exp_08_t.csv","testy_H2-pow_fi08_071221")
-
-data13 = wczytanie_danych("Exp_09.csv","testy_H2-pow_fi1_13122021","ch 3")
-text13 = wczytanie_danych("Exp_09_t.csv","testy_H2-pow_fi1_13122021")
-
-data14 = wczytanie_danych("Exp_010.csv","testy_H2-pow_fi1_13122021","ch 3")
-text14 = wczytanie_danych("Exp_010_t.csv","testy_H2-pow_fi1_13122021")
-
-data15 = wczytanie_danych("Exp_011.csv","testy_H2-pow_fi1_13122021","ch 3")
-text15 = wczytanie_danych("Exp_011_t.csv","testy_H2-pow_fi1_13122021")
-
-data16 = wczytanie_danych("Exp_01.csv","testy_H2-pow_fi16_13122021","ch 3")
-text16 = wczytanie_danych("Exp_01_t.csv","testy_H2-pow_fi16_13122021")
-
-data17 = wczytanie_danych("Exp_02.csv","testy_H2-pow_fi16_13122021","ch 3")
-text17 = wczytanie_danych("Exp_02_t.csv","testy_H2-pow_fi16_13122021")
-
-data18 = wczytanie_danych("Exp_03.csv","testy_H2-pow_fi16_13122021","ch 3")
-text18 = wczytanie_danych("Exp_03_t.csv","testy_H2-pow_fi16_13122021")
-
-data19 = wczytanie_danych("Exp_04.csv","testy_H2-pow_fi16_13122021","ch 3")
-text19 = wczytanie_danych("Exp_04_t.csv","testy_H2-pow_fi16_13122021")
-
-# data20 = wczytanie_danych("test1.csv","TESTY-H2-pow_fi08_101121","ch 3")
-# text20 = wczytanie_danych("test1_t.csv","TESTY-H2-pow_fi08_101121")
-
+data23 = wczytanie_danych("test4.csv","TESTY-H2-pow_fi08_101121","ch 3")
+text23 = wczytanie_danych("test4_t.csv","TESTY-H2-pow_fi08_101121")
 
 
 
 ############ FUNKCJA TWORZACA WYKRESY ######################################################
 
-####### Funkcja(dane z czujnikow, opis, numer exp, trigger dla SN, trigger dla SN powrotna fala, trigger dla SJ,
-####### trig dla 2 pierwszych SN, czas po ktorym mierzymy trigger powrotnej fali, max dopusz predkosc fizyczna,
-####### V_CJ, aP, Czas wykresu data) 
+####### Funkcja(dane z czujnikow, opis, numer exp, trigger dla SN, trigger dla SN powrotna fala, trigger dla SJ, trig dla 2 pierwszych SN, czas po ktorym mierzymy trigger powrotnej fali, max dopusz predkosc fizyczna) 
 
-def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,V_CJ,aP,t_d):
+def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max, V_CJ, aP, t_d,tak):
     
     ######## TWORZENIE KOPII #########
     data = data1[:]
@@ -187,6 +141,9 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
         if  i != "time [us]" and l < 8:
             data1[i] = data1[i]/df1["VPMA"][l]+0.1
         l+=1
+        if tak == 1:
+            if l>8 and l<12:
+                data1[i] = data1[i]*1.7
     #####################################################
     
 
@@ -204,7 +161,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     plt.xlabel("Czas [us]", fontsize=15)
     plt.ylabel("P [MPa]", fontsize=15)
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
-    #plt.ylim(0,2.5)
+    #plt.ylim(0,1)
     plt.xlim(2000,t_d)
     color = cm.rainbow(np.linspace(0, 1, 8))
     for i,c in zip(range(1,9),color):
@@ -225,7 +182,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     plt.legend(loc="upper left", fontsize=11)
     plt.tick_params(axis='both', labelsize=14)
     
-    plt.tight_layout()
+    fig1.tight_layout()
     
     list3=temp
     list4=[0.1,4]
@@ -383,7 +340,7 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     fig3 = plt.figure("V" + numer,figsize=(16, 9), dpi=150)
     plt.clf()
     
-    fig3.suptitle('dx/dt\n' + opis, fontsize=20)
+    fig3.suptitle('dx/dt\n' + opis + "\n", fontsize=20)
     
     plt.style.use('seaborn-deep')
     plt.xlabel("Dystans [m]", fontsize=15)
@@ -509,48 +466,13 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
 ####### Funkcja(dane z czujnikow, opis, numer exp, trigger dla SN, trigger dla SN powrotna fala,
 ####### trigger dla SJ, trig dla 2 pierwszych SN, czas po ktorym mierzymy trigger powrotnej fali, max pred dopuszcz m/s) 
 
-####### TESTY_H2-pow_fi1_091121 #############
-  
-# df1=funkcja(data1,text1,"1",0.25,0.9,0.08,0.15,6200,1750,1979.24,1009.8, 8000)
-# df2=funkcja(data2,text2,"2",0.25,1.1,0.225,0.25,6200,1750,1979.24,1009.8,8000)
-# ###funkcja(data3,text3,"3",0.15,0.6) ##### jedna sonda nie dziala (sonda 4)
-# df4=funkcja(data4,text4,"4",0.25,0.31,0.11,0.15,7500,1750,1979.24,1009.8, 11000)
-# df5=funkcja(data5,text5,"5",0.25,0.28,0.12,0.15,7500,1750,1979.24,1009.8, 11000)
-# df6=funkcja(data6,text6,"6",0.25,0.35,0.049,0.231,7500,1750,1979.24,1009.8,11000) 
-
-# ######## testy_H2-pow_fi1_061221 ###########
-
-# df7=funkcja(data7,text7,"7",0.35,0.8,0.05,0.231,6700,1750,1979.24,1009.8, 8100) 
-# df8=funkcja(data8,text8,"8",0.17,0.8,0.2,0.2,6500,1750,1979.24,1009.8, 8200) 
-
-# ####### testy_H2-pow_fi08_061221 ###########
-
-# df9=funkcja(data9,text9,"9",0.22,0.25,0.05,0.14,9000,1300,1870.7,946.5, 14000) #Sprawdzic dane sond
-# df10=funkcja(data10,text10,"10",0.17,0.35,0.044,0.2,9800,1100,1870.7,946.5, 13200) 
-
-# ########  testy_H2-pow_fi08_071221 #########
-
-# df11=funkcja(data11,text11,"11",0.203,0.95,0.3,1.2,7250,2000,1870.7,946.5, 9000)
-# df12=funkcja(data12,text12,"12",0.29,0.35,0.044,0.2,10130,1111,1870.7,946.5, 13000) 
-
-###### testy_H2-pow_fi1_13122021  #########
-
-df13=funkcja(data13,text13,"13",0.203,0.65,0.07,0.2,6750,2000,1979.24,1009.8, 8000)
-df14=funkcja(data14,text14,"14",0.29,0.4,0.1,0.2,7500,2000,1979.24,1009.8, 10000) 
-df15=funkcja(data15,text15,"15",0.29,0.4,0.08,0.2,7500,2000,1979.24,1009.8, 10000) 
-
-######  testy_H2-pow_fi16_13122021 #############
-
-df16=funkcja(data16,text16,"16",0.3,1,0.07,0.3,3770,1700,2102.29,1056.6, 5500)
-df17=funkcja(data17,text17,"17",0.25,0.25,0.15,0.1135,6600,2200,2102.29,1056.6, 10500) 
-df18=funkcja(data18,text18,"18",0.137,0.4,0.08,0.3,6500,2200,2102.29,1056.6, 9200) 
-df19=funkcja(data19,text19,"19",0.2,0.4,0.07,0.3,6660,2200,2102.29,1056.6, 9000)
-
-# ####### TESTY-H2-pow_fi08_101121 #########
-
-# df20=funkcja(data20,text20,"20",0.24,0.185,0.07,0.1,9600,1100,1870.7,946.5, 13500) 
+######## TESTY-H2-pow_fi08_101121 #########
 
 
+df21=funkcja(data21,text21,"21",0.17,0.188,0.09,0.1,4700,1100,1870.7,946.5,13500,0)
+df22=funkcja(data22,text22,"22",0.17,0.22,0.2,0.17,9900,1100,1870.7,946.5,13500,0)
+df23=funkcja(data23,text23,"23",0.17,0.25,0.098,0.2,9900,1100,1870.7,946.5,13000,0)
 
+####### ZBIORCZY ###########
 
 
