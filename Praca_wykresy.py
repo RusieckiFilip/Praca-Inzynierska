@@ -84,26 +84,26 @@ def wczytanie_danych(nazwa_pliku, nazwa_folderu, kanal=0):
 # data12 = wczytanie_danych("Exp_08.csv","testy_H2-pow_fi08_071221","ch 3")
 # text12 = wczytanie_danych("Exp_08_t.csv","testy_H2-pow_fi08_071221")
 
-data13 = wczytanie_danych("Exp_09.csv","testy_H2-pow_fi1_13122021","ch 3")
-text13 = wczytanie_danych("Exp_09_t.csv","testy_H2-pow_fi1_13122021")
+# data13 = wczytanie_danych("Exp_09.csv","testy_H2-pow_fi1_13122021","ch 3")
+# text13 = wczytanie_danych("Exp_09_t.csv","testy_H2-pow_fi1_13122021")
 
-data14 = wczytanie_danych("Exp_010.csv","testy_H2-pow_fi1_13122021","ch 3")
-text14 = wczytanie_danych("Exp_010_t.csv","testy_H2-pow_fi1_13122021")
+# data14 = wczytanie_danych("Exp_010.csv","testy_H2-pow_fi1_13122021","ch 3")
+# text14 = wczytanie_danych("Exp_010_t.csv","testy_H2-pow_fi1_13122021")
 
-data15 = wczytanie_danych("Exp_011.csv","testy_H2-pow_fi1_13122021","ch 3")
-text15 = wczytanie_danych("Exp_011_t.csv","testy_H2-pow_fi1_13122021")
+# data15 = wczytanie_danych("Exp_011.csv","testy_H2-pow_fi1_13122021","ch 3")
+# text15 = wczytanie_danych("Exp_011_t.csv","testy_H2-pow_fi1_13122021")
 
-data16 = wczytanie_danych("Exp_01.csv","testy_H2-pow_fi16_13122021","ch 3")
-text16 = wczytanie_danych("Exp_01_t.csv","testy_H2-pow_fi16_13122021")
+# data16 = wczytanie_danych("Exp_01.csv","testy_H2-pow_fi16_13122021","ch 3")
+# text16 = wczytanie_danych("Exp_01_t.csv","testy_H2-pow_fi16_13122021")
 
-data17 = wczytanie_danych("Exp_02.csv","testy_H2-pow_fi16_13122021","ch 3")
-text17 = wczytanie_danych("Exp_02_t.csv","testy_H2-pow_fi16_13122021")
+# data17 = wczytanie_danych("Exp_02.csv","testy_H2-pow_fi16_13122021","ch 3")
+# text17 = wczytanie_danych("Exp_02_t.csv","testy_H2-pow_fi16_13122021")
 
-data18 = wczytanie_danych("Exp_03.csv","testy_H2-pow_fi16_13122021","ch 3")
-text18 = wczytanie_danych("Exp_03_t.csv","testy_H2-pow_fi16_13122021")
+# data18 = wczytanie_danych("Exp_03.csv","testy_H2-pow_fi16_13122021","ch 3")
+# text18 = wczytanie_danych("Exp_03_t.csv","testy_H2-pow_fi16_13122021")
 
-data19 = wczytanie_danych("Exp_04.csv","testy_H2-pow_fi16_13122021","ch 3")
-text19 = wczytanie_danych("Exp_04_t.csv","testy_H2-pow_fi16_13122021")
+# data19 = wczytanie_danych("Exp_04.csv","testy_H2-pow_fi16_13122021","ch 3")
+# text19 = wczytanie_danych("Exp_04_t.csv","testy_H2-pow_fi16_13122021")
 
 # data20 = wczytanie_danych("test1.csv","TESTY-H2-pow_fi08_101121","ch 3")
 # text20 = wczytanie_danych("test1_t.csv","TESTY-H2-pow_fi08_101121")
@@ -381,11 +381,11 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     
     plt.plot([0,list5[1]],[0,df1["Predkosc P"][1]], linestyle='--', color="g")
-    plt.plot([0,list5[1]],[0,list7[1]], linestyle='--', color="b")
+    plt.plot([0,list5[3]],[0,list7[3]], linestyle='--', color="b")
     
     plt.plot([list5[1],list5[2]],[df1["Predkosc P"][1],list6[2]], color="g",marker="o")
     plt.plot(list5[2:],list6[2:], label="Fala cisnieniowa", color="g",marker="o")
-    plt.plot(list5[1:],list7[1:], label="Front plomienia",  color="b",marker="o")
+    plt.plot(list5[3:],list7[3:], label="Front plomienia",  color="b",marker="o")
     plt.ylim(0,V_CJ+200)
     plt.tick_params(axis='both', labelsize=14)
     
@@ -919,11 +919,11 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     
     plt.plot([0,list5[1]],[0,df1["Predkosc P"][1]], linestyle='--', color="g")
-    plt.plot([0,list5[1]],[0,list7[1]], linestyle='--', color="b")
+    plt.plot([0,list5[3]],[0,list7[3]], linestyle='--', color="b")
     
     plt.plot([list5[1],list5[2]],[df1["Predkosc P"][1],list6[2]], color="g",marker="o")
     plt.plot(list5[2:],list6[2:], label="Fala cisnieniowa", color="g",marker="o")
-    plt.plot(list5[1:],list7[1:], label="Front plomienia",  color="b",marker="o")
+    plt.plot(list5[3:],list7[3:], label="Front plomienia",  color="b",marker="o")
     plt.ylim(0,V_CJ+200)
     plt.tick_params(axis='both', labelsize=14)
     
@@ -1380,11 +1380,11 @@ def funkcja(data1,text1,numer,tr_SN, tr_SN_f2, tr_SJ, tr_SN2, czas_zbior, V_max,
     plt.grid(color='#717171', linestyle='--', linewidth=0.3)
     
     plt.plot([0,list5[1]],[0,df1["Predkosc P"][1]], linestyle='--', color="g")
-    plt.plot([0,list5[1]],[0,list7[1]], linestyle='--', color="b")
+    plt.plot([0,list5[3]],[0,list7[3]], linestyle='--', color="b")
     
     plt.plot([list5[1],list5[2]],[df1["Predkosc P"][1],list6[2]], color="g",marker="o")
     plt.plot(list5[2:],list6[2:], label="Fala cisnieniowa", color="g",marker="o")
-    plt.plot(list5[1:],list7[1:], label="Front plomienia",  color="b",marker="o")
+    plt.plot(list5[3:],list7[3:], label="Front plomienia",  color="b",marker="o")
     plt.ylim(0,V_CJ+200)
     plt.tick_params(axis='both', labelsize=14)
     
